@@ -1,0 +1,34 @@
+tosca_definitions_version: cloudify_dsl_1_3
+imports:
+  - plugin:my-plugin
+  - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
+
+inputs:
+
+  server_ip:
+    description: >
+      REST server ip
+    default: 192.168.0.22
+
+  server_port:
+    description: >
+     REST server port
+    default: 8181
+  vNet_name:
+    description: >
+     Virtual Network Name
+     
+node_templates:
+
+  http_web_server:
+    type: cloudify.nodes.WebServer
+    properties:
+      port: { get_input: webserver_port }
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        create: 
+          implementation: install.py
+          executor: central_deployment_agent
+        delete: 
+          implementation: uninstall.py
+          executor: central_deployment_agent
