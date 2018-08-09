@@ -18,16 +18,6 @@ inputs:
   vNet_name:
     description: >
      Virtual Network Name
-node_types:
-  cloudify.nodes.VirtualNetwork:
-  derived_from: cloudify.nodes.Root
-  properties:
-    server_ip:
-      type: string
-    server_port:
-      type: string
-    vNet_name:
-      type: string
 
 node_templates:
 
