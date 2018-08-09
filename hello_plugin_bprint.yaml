@@ -14,15 +14,22 @@ inputs:
     description: >
      REST server port
     default: 8181
-    
+
   vNet_name:
     description: >
      Virtual Network Name
+node_types:
+  cloudify.nodes.VirtualNetwork:
+  derived_from: cloudify.nodes.Root
+  properties:
+    server_ip
+    server_port
+    vNet_name
 
 node_templates:
 
-  http_web_server:
-    type: cloudify.nodes.WebServer
+  vNet:
+    type: cloudify.nodes.VirtualNetwork
     properties:
       server_ip: { get_input: server_ip }
       server_port: { get_input: server_port }
