@@ -22,9 +22,12 @@ node_types:
   cloudify.nodes.VirtualNetwork:
   derived_from: cloudify.nodes.Root
   properties:
-    server_ip
-    server_port
-    vNet_name
+    server_ip:
+      type: string
+    server_port:
+      type: string
+    vNet_name:
+      type: string
 
 node_templates:
 
