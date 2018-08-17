@@ -25,7 +25,11 @@ inputs:
      REST server port
     default: 8181
 
-  vNet_name:
+  vNet_name1:
+    description: >
+     Virtual Network Name
+
+  vNet_name2:
     description: >
      Virtual Network Name
 
@@ -39,9 +43,17 @@ dsl_definitions:
 
 node_templates:
 
-  VirtualNetwork:
+  VirtualNetwork1:
     type: cloudify.solo.nodes.VirtualNetwork
     properties:
       solo_config: *solo_config
-      vNet_name: { get_input: vNet_name }
+      vNet_name: { get_input: vNet_name1 }
+
+  VirtualNetwork2:
+    type: cloudify.solo.nodes.VirtualNetwork
+    properties:
+      solo_config: *solo_config
+      vNet_name: { get_input: vNet_name2 }      
+
+
     
