@@ -40,7 +40,7 @@ dsl_definitions:
 node_templates:
 
   VirtualNetwork:
-    type: cloudify.solo_plugin.nodes.VirtualNetwork
+    type: cloudify.solo.nodes.VirtualNetwork
     properties:
       solo_config: *solo_config
       vNet_name: { get_input: vNet_name }
