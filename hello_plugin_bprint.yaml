@@ -1,9 +1,19 @@
 tosca_definitions_version: cloudify_dsl_1_3
 imports:
-  - plugin:my_plugin
+  - plugin:solo_plugin
   - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
 
 inputs:
+
+  username:
+    description: >
+      REST server username
+    default: { get_secret: solo_username }
+
+  password:
+    description: >
+     REST server password
+    default: { get_secret: solo_password }
 
   server_ip:
     description: >
@@ -19,12 +29,19 @@ inputs:
     description: >
      Virtual Network Name
 
+dsl_definitions:
+
+  solo_config: &solo_config
+    server_ip: { get_input: server_ip }
+    server_port: { get_input: server_port }
+    username: { get_input: username }
+    password: { get_input: password }
+
 node_templates:
 
   VirtualNetwork:
-    type: cloudify.my_plugin.nodes.VirtualNetwork
+    type: cloudify.solo_plugin.nodes.VirtualNetwork
     properties:
-      server_ip: { get_input: server_ip }
-      server_port: { get_input: server_port }
+      solo_config: *solo_config
       vNet_name: { get_input: vNet_name }
     
