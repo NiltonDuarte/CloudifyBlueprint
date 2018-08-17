@@ -85,7 +85,7 @@ node_templates:
       bindingType: "VLAN"
       vlanId: "100"
     relationships:
-    - type: cloudify.relationships.contained_in
+    - type: cloudify.relationships.connected_to
       target: Switch1
 
 
