@@ -58,7 +58,7 @@ node_templates:
   Switch1:
     type: cloudify.solo.nodes.VirtualSwitch
     properties:
-      datapathId: "0000000000000042"
+      datapathId: "0000000000000021"
       controllerIp: "192.168.1.1"
       controllerPort: "6633"
       openflowVersion: "OF_13"
@@ -70,12 +70,12 @@ node_templates:
   Switch2:
     type: cloudify.solo.nodes.VirtualSwitch
     properties:
-      datapathId: "0000000000000022"
+      datapathId: "0000000000000011"
       controllerIp: "192.168.1.1"
-      physicalDevice: "whx-rj"
+      physicalDevice: "whx-sp"
     relationships:
     - type: cloudify.relationships.contained_in
-      target: VirtualNetwork2
+      target: VirtualNetwork1
 
   Port1:
     type: cloudify.solo.nodes.VirtualPort
@@ -87,6 +87,8 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: Switch1
+    - type: cloudify.relationships.connected_to
+      target: Port2
 
   Port2:
     type: cloudify.solo.nodes.VirtualPort
