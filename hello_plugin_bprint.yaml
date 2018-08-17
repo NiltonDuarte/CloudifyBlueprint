@@ -85,8 +85,21 @@ node_templates:
       bindingType: "VLAN"
       vlanId: "100"
     relationships:
-    - type: cloudify.relationships.depends_on
+    - type: cloudify.relationships.contained_in
       target: Switch1
+
+  Port2:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:        
+      virtualPortNumber: "1"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "102"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: Switch2   
+    - type: cloudify.relationships.connected_to
+      target: Port1  
 
 
     
