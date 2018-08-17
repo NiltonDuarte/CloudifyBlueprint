@@ -47,13 +47,26 @@ node_templates:
     type: cloudify.solo.nodes.VirtualNetwork
     properties:
       solo_config: *solo_config
-      vNet_name: { get_input: vNet_name1 }
+      vNetworkName: { get_input: vNet_name1 }
 
   VirtualNetwork2:
     type: cloudify.solo.nodes.VirtualNetwork
     properties:
       solo_config: *solo_config
-      vNet_name: { get_input: vNet_name2 }      
+      vNetworkName: { get_input: vNet_name2 }     
+
+  Switch1:
+    type: cloudify.solo.nodes.VirtualSwitch 
+    properties:
+      solo_config: *solo_config
+      datapathId: "0000000000000042"
+      controllerIp: "192.168.1.1"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "whx-rj"      
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
 
 
     
