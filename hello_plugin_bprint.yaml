@@ -53,28 +53,26 @@ node_templates:
     type: cloudify.solo.nodes.VirtualNetwork
     properties:
       solo_config: *solo_config
-      vNetworkName: { get_input: vNet_name2 }     
+      vNetworkName: { get_input: vNet_name2 }
 
   Switch1:
-    type: cloudify.solo.nodes.VirtualSwitch 
+    type: cloudify.solo.nodes.VirtualSwitch
     properties:
       datapathId: "0000000000000042"
       controllerIp: "192.168.1.1"
       controllerPort: "6633"
       openflowVersion: "OF_13"
-      physicalDevice: "whx-rj"      
+      physicalDevice: "whx-rj"
     relationships:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
 
   Switch2:
-    type: cloudify.solo.nodes.VirtualSwitch 
+    type: cloudify.solo.nodes.VirtualSwitch
     properties:
       datapathId: "0000000000000022"
       controllerIp: "192.168.1.1"
-      controllerPort: "6633"
-      openflowVersion: "OF_13"
-      physicalDevice: "whx-rj"      
+      physicalDevice: "whx-rj"
     relationships:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork2
@@ -82,9 +80,9 @@ node_templates:
   Port1:
     type: cloudify.solo.nodes.VirtualPort
     properties:        
-      virtualPortNumber: "1"       
-      physicalPortName:  "backbone-rnp"     
-      bindingType: "VLAN"     
+      virtualPortNumber: "1"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
       vlanId: "100"
     relationships:
     - type: cloudify.relationships.contained_in
