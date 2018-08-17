@@ -77,6 +77,16 @@ node_templates:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
 
+  Switch3:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "0000000000000311"
+      controllerIp: "192.168.1.1"
+      physicalDevice: "whx-sp"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork2
+
   Port1:
     type: cloudify.solo.nodes.VirtualPort
     properties:        
@@ -87,8 +97,6 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: Switch1
-    - type: cloudify.relationships.connected_to
-      target: Port2
 
   Port2:
     type: cloudify.solo.nodes.VirtualPort
@@ -99,9 +107,17 @@ node_templates:
       vlanId: "102"
     relationships:
     - type: cloudify.relationships.contained_in
-      target: Switch2   
+      target: Switch2
+
+  Link:
+    type: cloudify.solo.nodes.VirtualLink
+    relationships:
     - type: cloudify.relationships.connected_to
-      target: Port1  
+      target: Port1
+    - type: cloudify.relationships.connected_to
+      target: Port2
+
+ 
 
 
     
