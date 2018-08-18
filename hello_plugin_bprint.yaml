@@ -101,6 +101,10 @@ node_templates:
 
   Link:
     type: cloudify.solo.nodes.VirtualLink
+    properties:
+      linkType: "STATIC_VLAN"
+      vlanId: "100"
+      nsiBandwidth: "100"
     relationships:
     - type: cloudify.relationships.connected_to
       target: Port1
