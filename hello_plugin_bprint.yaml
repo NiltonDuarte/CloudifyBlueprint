@@ -106,6 +106,8 @@ node_templates:
       target: Port1
     - type: cloudify.relationships.connected_to
       target: Port2
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
 
  
 
