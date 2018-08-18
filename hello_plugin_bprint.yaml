@@ -72,7 +72,7 @@ node_templates:
     properties:
       datapathId: "0000000000000011"
       controllerIp: "192.168.1.1"
-      physicalDevice: "whx-sp"
+      physicalDevice: "whx-pa"
     relationships:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
