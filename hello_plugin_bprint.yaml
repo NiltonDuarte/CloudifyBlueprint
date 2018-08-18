@@ -110,9 +110,9 @@ node_templates:
       vlanId: "100"
       nsiBandwidth: "100"
     relationships:
-    - type: cloudify.solo.relationships.connected_from
+    - type: cloudify.solo.connected_from
       target: Switch1
-    - type: cloudify.solo.relationships.connected_to
+    - type: cloudify.solo.connected_to
       target: Switch2
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
