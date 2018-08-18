@@ -102,14 +102,18 @@ node_templates:
   Link:
     type: cloudify.solo.nodes.VirtualLink
     properties:
+      srcVirtualPortNumber: "3"
+      dstVirtualPortNumber: "3"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
       linkType: "STATIC_VLAN"
       vlanId: "100"
       nsiBandwidth: "100"
     relationships:
-    - type: cloudify.relationships.connected_to
-      target: Port1
-    - type: cloudify.relationships.connected_to
-      target: Port2
+    - type: cloudify.solo.relationships.connected_from
+      target: Switch1
+    - type: cloudify.solo.relationships.connected_to
+      target: Switch2
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
 
