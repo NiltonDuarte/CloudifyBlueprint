@@ -27,94 +27,94 @@ inputs:
 node_templates:
 
   VNET1:
-  type: cloudify.nodes.DeploymentProxy
-  properties:
-    resource_config:
-      blueprint:
-        id: { get_input: net1 }
-        blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
-        main_file_name: { get_input: bprint }
-        external_resource: false
-      deployment:
-        id: { get_input: net1 }
-        inputs:
-          vNet_name: { get_input: net1 }
-        outputs:
-          virtual_network: { get_input: net1 }
-        external_resource: false
-      reexecute: false
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: { get_input: net1 }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net1 }
+          inputs:
+            vNet_name: { get_input: net1 }
+          outputs:
+            virtual_network: { get_input: net1 }
+          external_resource: false
+        reexecute: false
 
   VNET2:
-  type: cloudify.nodes.DeploymentProxy
-  properties:
-    resource_config:
-      blueprint:
-        id: { get_input: net2 }
-        blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
-        main_file_name: { get_input: bprint }
-        external_resource: false
-      deployment:
-        id: { get_input: net2 }
-        inputs:
-          vNet_name: { get_input: net2 }
-        outputs:
-          virtual_network: { get_input: net2 }
-        external_resource: false
-      reexecute: false
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: { get_input: net2 }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net2 }
+          inputs:
+            vNet_name: { get_input: net2 }
+          outputs:
+            virtual_network: { get_input: net2 }
+          external_resource: false
+        reexecute: false
 
   VNET3:
-  type: cloudify.nodes.DeploymentProxy
-  properties:
-    resource_config:
-      blueprint:
-        id: { get_input: net3 }
-        blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
-        main_file_name: { get_input: bprint }
-        external_resource: false
-      deployment:
-        id: { get_input: net3 }
-        inputs:
-          vNet_name: { get_input: net3 }
-        outputs:
-          virtual_network: { get_input: net3 }
-        external_resource: false
-      reexecute: false
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: { get_input: net3 }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net3 }
+          inputs:
+            vNet_name: { get_input: net3 }
+          outputs:
+            virtual_network: { get_input: net3 }
+          external_resource: false
+        reexecute: false
 
   VNET4:
-  type: cloudify.nodes.DeploymentProxy
-  properties:
-    resource_config:
-      blueprint:
-        id: { get_input: net4 }
-        blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
-        main_file_name: { get_input: bprint }
-        external_resource: false
-      deployment:
-        id: { get_input: net4 }
-        inputs:
-          vNet_name: { get_input: net4 }
-        outputs:
-          virtual_network: { get_input: net4 }
-        external_resource: false
-      reexecute: false   
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: { get_input: net4 }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net4 }
+          inputs:
+            vNet_name: { get_input: net4 }
+          outputs:
+            virtual_network: { get_input: net4 }
+          external_resource: false
+        reexecute: false   
 
   VNET5:
-  type: cloudify.nodes.DeploymentProxy
-  properties:
-    resource_config:
-      blueprint:
-        id: { get_input: net5 }
-        blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
-        main_file_name: { get_input: bprint }
-        external_resource: false
-      deployment:
-        id: { get_input: net5 }
-        inputs:
-          vNet_name: { get_input: net5 }
-        outputs:
-          virtual_network: { get_input: net5 }
-        external_resource: false
-      reexecute: false         
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: { get_input: net5 }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net5 }
+          inputs:
+            vNet_name: { get_input: net5 }
+          outputs:
+            virtual_network: { get_input: net5 }
+          external_resource: false
+        reexecute: false         
 
  
 
