@@ -1,0 +1,119 @@
+tosca_definitions_version: cloudify_dsl_1_3
+imports:
+  - plugin:solo_plugin
+  - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
+
+inputs:
+
+  username:
+    description: >
+      REST server username
+    default: { get_secret: solo_username }
+
+  password:
+    description: >
+     REST server password
+    default: { get_secret: solo_password }
+
+  server_ip:
+    description: >
+      REST server ip
+    default: 200.133.192.62
+
+  server_port:
+    description: >
+     REST server port
+    default: 8181
+
+  vNet_name1:
+    description: >
+     Virtual Network Name
+    default: vnet1
+
+dsl_definitions:
+
+  solo_config: &solo_config
+    server_ip: { get_input: server_ip }
+    server_port: { get_input: server_port }
+    username: { get_input: username }
+    password: { get_input: password }
+
+node_templates:
+
+  VirtualNetwork1:
+    type: cloudify.solo.nodes.VirtualNetwork
+    properties:
+      solo_config: *solo_config
+      vNetworkName: { get_input: vNet_name1 }
+
+  VirtualNetwork2:
+    type: cloudify.solo.nodes.VirtualNetwork
+    properties:
+      solo_config: *solo_config
+      vNetworkName: { get_input: vNet_name2 }
+
+  SwitchRJ:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "2100000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-RJ"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+  SwitchSP:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "1100000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-SP"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+  SwitchRS:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "5100000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-RS"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+  SwitchDF:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "6100000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-DF"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+  SwitchGO:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "6200000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-GO"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+
+ 
+
+
+    
