@@ -46,12 +46,6 @@ node_templates:
       solo_config: *solo_config
       vNetworkName: { get_input: vNet_name1 }
 
-  VirtualNetwork2:
-    type: cloudify.solo.nodes.VirtualNetwork
-    properties:
-      solo_config: *solo_config
-      vNetworkName: { get_input: vNet_name2 }
-
   SwitchRJ:
     type: cloudify.solo.nodes.VirtualSwitch
     properties:
