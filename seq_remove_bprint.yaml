@@ -79,7 +79,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS1  
 
   PortRS3:
@@ -92,7 +92,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS2  
 
   PortRS4:
@@ -105,7 +105,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS3
 
   PortRS5:
@@ -118,7 +118,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS4
 
   PortRS6:
@@ -131,7 +131,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS5  
 
   PortRS7:
@@ -144,7 +144,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS6  
 
   PortRS8:
@@ -157,7 +157,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS7  
 
   PortRS9:
@@ -170,7 +170,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS8  
 
   PortRS10:
@@ -183,7 +183,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS9  
 
   PortRS11:
@@ -196,7 +196,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS10  
 
   PortRS12:
@@ -209,7 +209,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS11
 
   PortRS13:
@@ -222,7 +222,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS12  
 
   PortRS14:
@@ -235,7 +235,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS13
 
   PortRS15:
@@ -248,7 +248,7 @@ node_templates:
     relationships:
     - type: cloudify.relationships.contained_in
       target: SwitchRS
-    - type: cloudify.relationships.contained_in  
+    - type: cloudify.relationships.depends_on  
       target: PortRS14
 
 
