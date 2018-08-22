@@ -32,7 +32,7 @@ node_templates:
         deployment:
           id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
-            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            vNet_name: { get_input: networkName }
             index: { get_property: [SELF, index] }
           outputs:
             virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
@@ -52,7 +52,7 @@ node_templates:
         deployment:
           id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
-            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            vNet_name: { get_input: networkName }
             index: { get_property: [SELF, index] }
           outputs:
             virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
@@ -72,7 +72,7 @@ node_templates:
         deployment:
           id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
-            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            vNet_name: { get_input: networkName }
             index: { get_property: [SELF, index] }
           outputs:
             virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
@@ -92,7 +92,7 @@ node_templates:
         deployment:
           id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
-            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            vNet_name: { get_input: networkName }
             index: { get_property: [SELF, index] }
           outputs:
             virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
@@ -112,7 +112,7 @@ node_templates:
         deployment:
           id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
-            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            vNet_name: { get_input: networkName }
             index: { get_property: [SELF, index] }
           outputs:
             virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
