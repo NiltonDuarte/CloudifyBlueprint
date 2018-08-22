@@ -1,0 +1,118 @@
+tosca_definitions_version: cloudify_dsl_1_3
+imports:
+  - plugin:cloudify-utilities-plugin
+  - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
+
+inputs:
+
+  networkName:
+    default: ""
+  bprint:
+    default: c2_bprint.yaml
+
+node_templates:
+
+  VNET1:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      index: "1"
+      resource_config:
+        blueprint:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          inputs:
+            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            index: { get_property: [SELF, index] }
+          outputs:
+            virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          external_resource: false
+        reexecute: false
+
+  VNET2:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      index: "2"
+      resource_config:
+        blueprint:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { get_input: net2 }
+          inputs:
+            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            index: { get_property: [SELF, index] }
+          outputs:
+            virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          external_resource: false
+        reexecute: false
+
+  VNET3:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      index: "3"
+      resource_config:
+        blueprint:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          inputs:
+            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            index: { get_property: [SELF, index] }
+          outputs:
+            virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          external_resource: false
+        reexecute: false
+
+  VNET4:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      index: "4"
+      resource_config:
+        blueprint:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          inputs:
+            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            index: { get_property: [SELF, index] }
+          outputs:
+            virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          external_resource: false
+        reexecute: false   
+
+  VNET5:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      index: "5"
+      resource_config:
+        blueprint:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          blueprint_archive: https://github.com/NiltonDuarte/CloudifyBlueprint/archive/master.zip
+          main_file_name: { get_input: bprint }
+          external_resource: false
+        deployment:
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          inputs:
+            vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+            index: { get_property: [SELF, index] }
+          outputs:
+            virtual_network: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
+          external_resource: false
+        reexecute: false         
+
+ 
+
+
+    
