@@ -50,7 +50,7 @@ node_templates:
           main_file_name: { get_input: bprint }
           external_resource: false
         deployment:
-          id: { get_input: net2 }
+          id: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
           inputs:
             vNet_name: { concat: [{ get_input: networkName }, { get_property: [SELF, index] }] }
             index: { get_property: [SELF, index] }
