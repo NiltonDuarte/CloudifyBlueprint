@@ -10,10 +10,17 @@ inputs:
   bprint:
     default: c2_bprint.yaml
 
+node_types: 
+  IndexedDeploymentProxy:
+    derived_from: cloudify.nodes.DeploymentProxy
+    properties:
+      index:
+        type: string
+
 node_templates:
 
   VNET1:
-    type: cloudify.nodes.DeploymentProxy
+    type: IndexedDeploymentProxy
     properties:
       index: "1"
       resource_config:
@@ -33,7 +40,7 @@ node_templates:
         reexecute: false
 
   VNET2:
-    type: cloudify.nodes.DeploymentProxy
+    type: IndexedDeploymentProxy
     properties:
       index: "2"
       resource_config:
@@ -53,7 +60,7 @@ node_templates:
         reexecute: false
 
   VNET3:
-    type: cloudify.nodes.DeploymentProxy
+    type: IndexedDeploymentProxy
     properties:
       index: "3"
       resource_config:
@@ -73,7 +80,7 @@ node_templates:
         reexecute: false
 
   VNET4:
-    type: cloudify.nodes.DeploymentProxy
+    type: IndexedDeploymentProxy
     properties:
       index: "4"
       resource_config:
@@ -93,7 +100,7 @@ node_templates:
         reexecute: false   
 
   VNET5:
-    type: cloudify.nodes.DeploymentProxy
+    type: IndexedDeploymentProxy
     properties:
       index: "5"
       resource_config:
