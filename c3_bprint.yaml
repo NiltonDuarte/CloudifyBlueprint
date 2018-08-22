@@ -161,3 +161,20 @@ node_templates:
       target: SwitchDF
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
+
+  LinkRSRJ:
+    type: cloudify.solo.nodes.VirtualLink
+    properties:
+      srcVirtualPortNumber: "513"
+      dstVirtualPortNumber: "213"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
+      linkType: "NSI"
+      nsiBandwidth: "10"
+    relationships:
+    - type: cloudify.solo.connected_from
+      target: SwitchRS
+    - type: cloudify.solo.connected_to
+      target: SwitchRJ
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1      
