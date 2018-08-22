@@ -1,0 +1,259 @@
+tosca_definitions_version: cloudify_dsl_1_3
+imports:
+  - plugin:solo_plugin
+  - http://www.getcloudify.org/spec/cloudify/4.3/types.yaml
+
+inputs:
+
+  username:
+    description: >
+      REST server username
+    default: { get_secret: solo_username }
+
+  password:
+    description: >
+     REST server password
+    default: { get_secret: solo_password }
+
+  server_ip:
+    description: >
+      REST server ip
+    default: 200.133.192.62
+
+  server_port:
+    description: >
+     REST server port
+    default: 8181
+
+  vNet_name:
+    description: >
+     Virtual Network Name
+    default: vnet1
+
+dsl_definitions:
+
+  solo_config: &solo_config
+    server_ip: { get_input: server_ip }
+    server_port: { get_input: server_port }
+    username: { get_input: username }
+    password: { get_input: password }
+
+node_templates:
+
+  VirtualNetwork1:
+    type: cloudify.solo.nodes.VirtualNetwork
+    properties:
+      solo_config: *solo_config
+      vNetworkName: { get_input: vNet_name }
+
+  SwitchRS:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "5100000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-RS"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
+
+  PortRS1:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "1"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "511"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+
+  PortRS2:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "2"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "512"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS1  
+
+  PortRS3:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "3"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "513"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS2  
+
+  PortRS4:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "4"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "514"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS3
+
+  PortRS5:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "5"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "515"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS4
+
+  PortRS6:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "6"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "516"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS5  
+
+  PortRS7:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "7"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "517"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS6  
+
+  PortRS8:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "8"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "518"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS7  
+
+  PortRS9:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "9"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "519"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS8  
+
+  PortRS10:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "10"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "110"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS9  
+
+  PortRS11:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "11"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "111"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS10  
+
+  PortRS12:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "12"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "112"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS11
+
+  PortRS13:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "13"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "113"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS12  
+
+  PortRS14:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "14"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "114"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS13
+
+  PortRS15:
+    type: cloudify.solo.nodes.VirtualPort
+    properties:
+      virtualPortNumber: "15"
+      physicalPortName:  "backbone-rnp"
+      bindingType: "VLAN"
+      vlanId: "115"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in  
+      target: PortRS14
+
+
+
+ 
+
+
+    
