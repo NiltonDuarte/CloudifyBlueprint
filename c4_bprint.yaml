@@ -82,18 +82,6 @@ node_templates:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
 
-  SwitchGO:
-    type: cloudify.solo.nodes.VirtualSwitch
-    properties:
-      datapathId: "6200000000000000"
-      controllerIp: "192.168.11.3"
-      controllerPort: "6633"
-      openflowVersion: "OF_13"
-      physicalDevice: "PoP-GO"
-    relationships:
-    - type: cloudify.relationships.contained_in
-      target: VirtualNetwork1      
-
   SwitchDF:
     type: cloudify.solo.nodes.VirtualSwitch
     properties:
@@ -106,10 +94,82 @@ node_templates:
     - type: cloudify.relationships.contained_in
       target: VirtualNetwork1
 
+  SwitchGO:
+    type: cloudify.solo.nodes.VirtualSwitch
+    properties:
+      datapathId: "6200000000000000"
+      controllerIp: "192.168.11.3"
+      controllerPort: "6633"
+      openflowVersion: "OF_13"
+      physicalDevice: "PoP-GO"
+    relationships:
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1      
 
+  LinkSPRS:
+    type: cloudify.solo.nodes.VirtualLink
+    properties:
+      srcVirtualPortNumber: "112"
+      dstVirtualPortNumber: "511"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
+      linkType: "NSI"
+      nsiBandwidth: "10"
+    relationships:
+    - type: cloudify.solo.connected_from
+      target: SwitchSP
+    - type: cloudify.solo.connected_to
+      target: SwitchRS
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1     
 
+  LinkRSGO:
+    type: cloudify.solo.nodes.VirtualLink
+    properties:
+      srcVirtualPortNumber: "512"
+      dstVirtualPortNumber: "711"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
+      linkType: "NSI"
+      nsiBandwidth: "10"
+    relationships:
+    - type: cloudify.solo.connected_from
+      target: SwitchRS
+    - type: cloudify.solo.connected_to
+      target: SwitchGO
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
 
- 
+  LinkGODF:
+    type: cloudify.solo.nodes.VirtualLink
+    properties:
+      srcVirtualPortNumber: "712"
+      dstVirtualPortNumber: "611"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
+      linkType: "NSI"
+      nsiBandwidth: "10"
+    relationships:
+    - type: cloudify.solo.connected_from
+      target: SwitchGO
+    - type: cloudify.solo.connected_to
+      target: SwitchDF
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1      
 
-
-    
+  LinkDFRJ:
+    type: cloudify.solo.nodes.VirtualLink
+    properties:
+      srcVirtualPortNumber: "612"
+      dstVirtualPortNumber: "211"
+      srcPhysicalPort: "backbone-rnp"
+      dstPhysicalPort: "backbone-rnp"
+      linkType: "NSI"
+      nsiBandwidth: "10"
+    relationships:
+    - type: cloudify.solo.connected_from
+      target: SwitchDF
+    - type: cloudify.solo.connected_to
+      target: SwitchRJ
+    - type: cloudify.relationships.contained_in
+      target: VirtualNetwork1
